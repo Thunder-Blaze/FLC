@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My Formula Learning Website</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.container {
+			position: relative;
+			width: 100%;
+			height: 100vh;
+			overflow: hidden;
+			background: black;
+		}
+
+		.container .Pages input {
+			display: none;
+		}
+
+		.container .Pages .rbtn {
+			position: absolute;
+			z-index: 10;
+			right: 20px;
+			top: 50%;
+			transform: translateY(-50%);
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.container .Pages .rbtn label{
+			width: 20px;
+			height: 20px;
+			border-radius: 20px;
+			background: #FFF7;
+			cursor: pointer;
+			transition: 0.5s;
+		}
+
+		.Pages input:nth-child(1):checked ~ .rbtn label:nth-child(1),
+		.Pages input:nth-child(2):checked ~ .rbtn label:nth-child(2) {
+			background: #FFF;
+			height: 50px;
+		}
+
+		.content {
+			position: relative;
+			height: 200vh;
+			display: flex;
+			flex-direction: column;
+			transition: 0.5s;
+		}
+
+		.content .Page {
+			position: relative;
+			width: 100vw;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			user-select: none;
+		}
+
+		.container .svgcontainer {
+			content: '';
+		    display: block;
+		    position: absolute;
+		    top: 50%;
+		    left: 0;
+		    transform: translate(-50%,-50%);
+		    z-index: 2;
+		    background: #1020607F;
+		    height: 50px;
+		    width: 90px;
+		    border-radius: 50px;
+		    cursor: pointer;
+		    border: 2px solid #FFF;
+		}
+
+		.container svg {
+			position: absolute;
+			top: 50%;
+		    left: 50%;
+		    transform: translateY(-50%);
+			z-index: 1;
+			fill: #FFF;
+			color: #FFF;
+			height: 30px;
+			width: 30px;
+			padding-left: 5px;
+		}
+
+		.content .Page .Formula {
+			position: relative;
+			width: 85%;
+			height: 85%;
+			text-align: center;
+		}
+
+		.content .Page .Formula .imgcontainer{	
+			border: 4px solid #FFF;
+			border-radius: 10px;	
+			overflow: scroll;
+			width: 100%;
+			height: 100%;
+			display: grid;
+		}
+
+		.content .Page .Formula .ShowAnsbtn{
+			position: relative;
+			bottom: 70px;
+			z-index: 2;
+			padding: 10px 20px;
+			font: 700 1.4em Montserrat, sans-serif;
+			border-radius: 10px;
+			border: 3px solid #FFF;
+			color: #FFF;
+			background: #102060;
+			transition: 0.2s;
+			opacity: 0.5;
+			width: 145px;
+		}
+
+		.content .Page .Formula .ShowAnsbtn:hover{
+			opacity: 1;
+			border: 3px solid #FFF;
+			color: #102060;
+			background: #FFF;
+		}
+
+
+		.content .Page .Formula.Ansdiv .imgcontainer{	
+			height: calc(100% - 3em);
+		}
+
+		.content .Page .Formula .imgcontainer::-webkit-scrollbar {
+		  	display: none;
+		  	width: 0;
+		  	-ms-overflow-style: none;
+		  	scrollbar-width: none;
+		}
+
+		.content .QuePg {
+			background: linear-gradient(45deg,#06BEE1,#102060);
+		}
+
+		.content .AnsPg {
+			background: linear-gradient(45deg,#29BF12,#ABFF4F);
+		}
+
+		.content .AnsPg b {
+			color: #FFF;
+			font: 600 3em Montserrat, sans-serif;
+			padding-bottom: 10px;
+		}
+
+		.FormulaImg {
+		    height: auto;
+		    width: 100%;
+		    overflow: hidden;
+
+/*		     max-width: 100%; */
+/*		    max-height: 100%;*/
+		}
+
+		.Pages input:nth-child(1):checked ~ .content{
+			top: 0;
+		}
+
+		.Pages input:nth-child(2):checked ~ .content{
+			top: -100vh;
+		}
+	</style>
+	<script src="jquery-3.7.0.min.js"></script>
+</head>
+<body onload="imagefix()">
+	
+	<div class="container">
+		<div class="Pages">
+			<input type="radio" name="slider" id="QuePgbtn" checked>
+			<input type="radio" name="slider" id="AnsPgbtn">
+			<!-- <input type="radio" id="3"> -->
+			<div class="rbtn">
+				<label for="QuePgbtn"></label>
+				<label for="AnsPgbtn"></label>
+			</div>
+			<button class="svgcontainer" onclick="next()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 12l-4.463 4.969-4.537-4.969h3c0-4.97 4.03-9 9-9 2.395 0 4.565.942 6.179 2.468l-2.004 2.231c-1.081-1.05-2.553-1.699-4.175-1.699-3.309 0-6 2.691-6 6h3zm10.463-4.969l-4.463 4.969h3c0 3.309-2.691 6-6 6-1.623 0-3.094-.65-4.175-1.699l-2.004 2.231c1.613 1.526 3.784 2.468 6.179 2.468 4.97 0 9-4.03 9-9h3l-4.537-4.969z"/></svg>
+			</button>
+			
+			<div class="content">
+				<div class="Page QuePg">
+					<div class="Formula Quediv">
+						<div class="imgcontainer">
+							<img id="QueImg" class="FormulaImg" src="./QA/1Q.jpg">
+						</div>
+						<button class="ShowAnsbtn" onclick="showanswer()">Answer</button>
+					</div>
+				</div>
+				<div class="Page AnsPg">
+					<div class="Formula Ansdiv">
+						<b id="Heading">Correct Formula</b>
+						<div class="imgcontainer">
+							<img id="AnsImg" class="FormulaImg" src="./QA/1A.jpg">
+						</div>
+						<button class="ShowAnsbtn" onclick="previous()"> Previous </button>
+						<button class="ShowAnsbtn" onclick="next()"> Next </button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+		function imagefix(){
+			if ( $('#AnsImg').width() >=  $('#AnsImg').height()) {
+				document.getElementById('AnsImg').style.height = "100%";
+				document.getElementById('AnsImg').style.width = "auto";
+			} else {
+				document.getElementById('AnsImg').style.width = "100%";
+				document.getElementById('AnsImg').style.height = "auto";
+			}
+			if ( $('#QueImg').width() >=  $('#QueImg').height()) {
+				document.getElementById('QueImg').style.height = "100%";
+				document.getElementById('QueImg').style.width = "auto";
+			} else {
+				document.getElementById('QueImg').style.width = "100%";
+				document.getElementById('QueImg').style.height = "auto";
+			}
+		}
+
+		function showanswer(){
+			document.getElementById('AnsPgbtn').checked = true;
+		}
+
+		var x=0;
+		var formulas = ["1","2","3"];
+
+		function next(){
+			document.getElementById('QuePgbtn').checked = true;
+			// var i = Math.floor(Math.random() * formulas.length);
+			// document.getElementById('QueImg').src = "./" + formulas[i] + ".jpg"
+			if (x < 2) {
+				x = x + 1;
+			}
+			setTimeout(function() {changeimg(x)},500);
+			if (window.innerWidth < window.innerHeight){
+				setTimeout(function() {imagefix(x)},600);
+			}
+		}
+
+		function previous(){
+			document.getElementById('QuePgbtn').checked = true;
+			if (x > 1) {
+				x = x - 1;
+			}
+			setTimeout(function() {changeimg(x)},500);
+			if (window.innerWidth < window.innerHeight){
+				setTimeout(function() {imagefix(x)},600);
+			}
+		}
+
+		function changeimg(z) {
+			document.getElementById('QueImg').src = "./QA/" + formulas[z] + "Q.jpg";
+			document.getElementById('AnsImg').src = "./QA/" + formulas[z] + "A.jpg";
+		}
+	</script>
+</body>
+</html>
