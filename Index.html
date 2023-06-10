@@ -16,7 +16,37 @@
 			width: 100%;
 			height: 100vh;
 			overflow: hidden;
-			background: black;
+		}
+
+		.container .ChapterPg {
+			width: calc(100vw - 20px);
+			height: 100vh;
+			position: fixed;
+			background: #272635;
+			z-index: 100;
+			padding: 10px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 40px;
+			color: #FFF;
+			overflow: scroll;
+		}
+
+		.container .ChapterPg h1{
+			margin: 0;
+		}
+
+		.container .ChapterPg button{
+			margin: 5px;
+			font-size: 18px;
+			border: none;
+			padding: 4px 20px;
+			background: #0075f2;
+			color: white;
+			cursor: pointer;
+			min-width: 100px;
+			border-radius: 6px;
 		}
 
 		.container .Pages input {
@@ -76,12 +106,12 @@
 		    left: 0;
 		    transform: translate(-50%,-50%);
 		    z-index: 2;
-		    background: #1020607F;
+		    background: #D30C7B7F;
 		    height: 50px;
 		    width: 90px;
 		    border-radius: 50px;
 		    cursor: pointer;
-		    border: 2px solid #FFF;
+		    border: 2px solid #0075F2;
 		}
 
 		.container svg {
@@ -105,7 +135,7 @@
 		}
 
 		.content .Page .Formula .imgcontainer{	
-			border: 4px solid #FFF;
+			border: 4px solid #0075F2;
 			border-radius: 10px;	
 			overflow: scroll;
 			width: 100%;
@@ -122,7 +152,7 @@
 			border-radius: 10px;
 			border: 3px solid #FFF;
 			color: #FFF;
-			background: #102060;
+			background: #D30C7B;
 			transition: 0.2s;
 			opacity: 0.5;
 			width: 145px;
@@ -131,7 +161,7 @@
 		.content .Page .Formula .ShowAnsbtn:hover{
 			opacity: 1;
 			border: 3px solid #FFF;
-			color: #102060;
+			color: #D30C7B;
 			background: #FFF;
 		}
 
@@ -148,11 +178,13 @@
 		}
 
 		.content .QuePg {
-			background: linear-gradient(45deg,#06BEE1,#102060);
+/*			background: linear-gradient(45deg,#06BEE1,#D30C7B);*/
+			background: #4C008F;
 		}
 
 		.content .AnsPg {
-			background: linear-gradient(45deg,#29BF12,#ABFF4F);
+/*			background: linear-gradient(45deg,#29BF12,#ABFF4F);*/
+			background: #074F57;
 		}
 
 		.content .AnsPg b {
@@ -180,9 +212,30 @@
 	</style>
 	<script src="jquery-3.7.0.min.js"></script>
 </head>
-<body onload="imagefix()">
-	
+<!-- <body onload="imagefix()"> -->
+<body>
 	<div class="container">
+		<div class="ChapterPg" id="ChapterPg">
+			<h1>Select Chapter</h1>
+			<button onclick="Chp(1,3)">SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+			<button>SHM</button>
+		</div>
 		<div class="Pages">
 			<input type="radio" name="slider" id="QuePgbtn" checked>
 			<input type="radio" name="slider" id="AnsPgbtn">
@@ -199,7 +252,7 @@
 				<div class="Page QuePg">
 					<div class="Formula Quediv">
 						<div class="imgcontainer">
-							<img id="QueImg" class="FormulaImg" src="./QA/1Q.jpg">
+							<img id="QueImg" class="FormulaImg" src="./QA/C1/1Q.jpg">
 						</div>
 						<button class="ShowAnsbtn" onclick="showanswer()">Answer</button>
 					</div>
@@ -208,7 +261,7 @@
 					<div class="Formula Ansdiv">
 						<b id="Heading">Correct Formula</b>
 						<div class="imgcontainer">
-							<img id="AnsImg" class="FormulaImg" src="./QA/1A.jpg">
+							<img id="AnsImg" class="FormulaImg" src="./QA/C1/1A.jpg">
 						</div>
 						<button class="ShowAnsbtn" onclick="previous()"> Previous </button>
 						<button class="ShowAnsbtn" onclick="next()"> Next </button>
@@ -219,41 +272,73 @@
 	</div>
 	<script type="text/javascript">
 
-		function imagefix(){
-			if ( $('#AnsImg').width() >=  $('#AnsImg').height()) {
-				document.getElementById('AnsImg').style.height = "100%";
-				document.getElementById('AnsImg').style.width = "auto";
-			} else {
-				document.getElementById('AnsImg').style.width = "100%";
-				document.getElementById('AnsImg').style.height = "auto";
+		// function imagefix(){
+		// 	if ( $('#AnsImg').width() >=  $('#AnsImg').height()) {
+		// 		document.getElementById('AnsImg').style.height = "100%";
+		// 		document.getElementById('AnsImg').style.width = "auto";
+		// 	} else {
+		// 		document.getElementById('AnsImg').style.width = "100%";
+		// 		document.getElementById('AnsImg').style.height = "auto";
+		// 	}
+		// 	if ( $('#QueImg').width() >=  $('#QueImg').height()) {
+		// 		document.getElementById('QueImg').style.height = "100%";
+		// 		document.getElementById('QueImg').style.width = "auto";
+		// 	} else {
+		// 		document.getElementById('QueImg').style.width = "100%";
+		// 		document.getElementById('QueImg').style.height = "auto";
+		// 	}
+		// };
+
+		// const fs = require('fs');
+		// const dir = './QA/C1';
+
+		// fs.readdir(dir, (err, files) => {
+		//   console.log(files.length);
+		// });
+
+		// function getCount(foldername) { 
+		// 	var myObject, f, filesCount; // Create an instance of the FileSystemObject 
+		// 	myObject = new ActiveXObject("Scripting.FileSystemObject");
+		// 	f = myObject.GetFolder(foldername); // gets the number of files in a folder 
+		// 	filesCount = f.files.Count; 
+		// 	console.log(filesCount);
+		// }
+		// document.write("The number of files in this folder is: " + filesCount);
+
+		// getCount('./QA/C1');
+
+		var Quelist = [];
+
+		var z = 0;
+		var y = 0;
+		function Chp(a,b) {
+			z = a;
+			y = b;
+			for (var i = 1; i < b+1; i++) {
+				Quelist.push(i)
 			}
-			if ( $('#QueImg').width() >=  $('#QueImg').height()) {
-				document.getElementById('QueImg').style.height = "100%";
-				document.getElementById('QueImg').style.width = "auto";
-			} else {
-				document.getElementById('QueImg').style.width = "100%";
-				document.getElementById('QueImg').style.height = "auto";
-			}
-		}
+			console.log(Quelist);
+			document.getElementById('ChapterPg').style = "display:none;";
+		};
 
 		function showanswer(){
 			document.getElementById('AnsPgbtn').checked = true;
 		}
 
 		var x=0;
-		var formulas = ["1","2","3"];
+		// var formulas = ["1","2","3"];
 
 		function next(){
 			document.getElementById('QuePgbtn').checked = true;
 			// var i = Math.floor(Math.random() * formulas.length);
 			// document.getElementById('QueImg').src = "./" + formulas[i] + ".jpg"
-			if (x < 2) {
+			if (x < y-1) {
 				x = x + 1;
 			}
 			setTimeout(function() {changeimg(x)},500);
-			if (window.innerWidth < window.innerHeight){
-				setTimeout(function() {imagefix(x)},600);
-			}
+			// if (window.innerWidth < window.innerHeight){
+				// setTimeout(function() {imagefix(x)},600);
+			// }
 		}
 
 		function previous(){
@@ -262,15 +347,35 @@
 				x = x - 1;
 			}
 			setTimeout(function() {changeimg(x)},500);
-			if (window.innerWidth < window.innerHeight){
-				setTimeout(function() {imagefix(x)},600);
-			}
+			// if (window.innerWidth < window.innerHeight){
+				// setTimeout(function() {imagefix(x)},600);
+			// }
 		}
 
-		function changeimg(z) {
-			document.getElementById('QueImg').src = "./QA/" + formulas[z] + "Q.jpg";
-			document.getElementById('AnsImg').src = "./QA/" + formulas[z] + "A.jpg";
+		function changeimg(c) {
+			document.getElementById('QueImg').src = "./QA/C" + z + "/" + Quelist[c] + "Q.jpg";
+			document.getElementById('AnsImg').src = "./QA/C" + z + "/" + + Quelist[c] + "A.jpg";
 		}
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div data-v-cc58dc40="" data-v-cdf07c88="" class="trailer" style="height: 436px; width: 714px;"><h2 data-v-cc58dc40="">Trailer</h2> <iframe data-v-cc58dc40="" src="https://www.youtube.com/embed/tsh7waq3Fyo" frameborder="0" allowfullscreen="allowfullscreen" class="video"></iframe></div>
+    box-sizing: border-box;
+    overflow: auto;
+    resize: both;
+    height: 436px;
+    width: 714px; -->
