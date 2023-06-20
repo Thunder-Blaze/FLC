@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>My Formula Learning Website</title>
 	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 		html {
 			font-family: "Montserrat",sans-serif;
 		}
@@ -325,6 +326,12 @@
 
 		var z = 0;
 		var y = 0;
+		var chapterpg = document.getElementById('ChapterPg');
+		var queimg = document.getElementById('QueImg');
+		var ansimg = document.getElementById('AnsImg');
+		var anspgbtn = document.getElementById('AnsPgbtn');
+		var quepgbtn = document.getElementById('QuePgbtn');
+
 		function Chp(a,b) {
 			z = a;
 			y = b;
@@ -333,49 +340,49 @@
 			}
 			randomize(Quelist)
 			console.log(Quelist);
-			document.getElementById('ChapterPg').style = "display:none;";
-			document.getElementById('QueImg').src = "./QA/C" + a + "/" + Quelist[1] + "Q.jpg";
-			document.getElementById('AnsImg').src = "./QA/C" + a + "/" + Quelist[1] + "A.jpg";
+			chapterpg.style = "display:none;";
+			queimg.src = "./QA/C" + a + "/" + Quelist[1] + "Q.jpg";
+			ansimg.src = "./QA/C" + a + "/" + Quelist[1] + "A.jpg";
 		};
 
 		function showanswer(){
-			document.getElementById('AnsPgbtn').checked = true;
+			anspgbtn.checked = true;
 		}
 
 		var x=1;
 		// var formulas = ["1","2","3"];
 
 		function next(){
-			document.getElementById('QuePgbtn').checked = true;
+			quepgbtn.checked = true;
 			// var i = Math.floor(Math.random() * formulas.length);
 			// document.getElementById('QueImg').src = "./" + formulas[i] + ".jpg"
 			if (x < y-1) {
 				x = x + 1;
 			}
-			setTimeout(function() {changeimg(x)},500);
+			setTimeout(function() {changeimg(x)},300);
 			// if (window.innerWidth < window.innerHeight){
 				// setTimeout(function() {imagefix(x)},600);
 			// }
 		}
 
 		function previous(){
-			document.getElementById('QuePgbtn').checked = true;
+			quepgbtn.checked = true;
 			if (x > 0) {
 				x = x - 1;
 			}
-			setTimeout(function() {changeimg(x)},500);
+			setTimeout(function() {changeimg(x)},300);
 			// if (window.innerWidth < window.innerHeight){
 				// setTimeout(function() {imagefix(x)},600);
 			// }
 		}
 
 		function changeimg(c) {
-			document.getElementById('QueImg').src = "./QA/C" + z + "/" + Quelist[c] + "Q.jpg";
-			document.getElementById('AnsImg').src = "./QA/C" + z + "/" + + Quelist[c] + "A.jpg";
+			queimg.src = "./QA/C" + z + "/" + Quelist[c] + "Q.jpg";
+			ansimg.src = "./QA/C" + z + "/" + Quelist[c] + "A.jpg";
 		}
 
 		function reset() {
-			document.getElementById('ChapterPg').style = "display:flex;";
+			chapterpg.style = "display:flex;";
 			x = 1;
 			Quelist = [];
 		}
